@@ -29,6 +29,7 @@ def clearConsole():
         command = "cls"
     os.system(command)
 
+
 def getUserFunction():
     """
     Determine what the user would like to do - enter in data or view the analysis from the survey
@@ -38,7 +39,6 @@ def getUserFunction():
         print("Please select an option below.\n")
         print("Select 1 to enter data or 2 to view the analysis:\n")
         userChoice = input("Enter your option here : ")
-        print(userChoice)
         if validateUserChoice(userChoice):
             print("Choice is valid")
             break
@@ -58,5 +58,32 @@ def validateUserChoice(choice):
     return True
 
 
+def getUserDataInput():
+    """
+    Function to retrieve the data the user inputs when they have selected to 
+    input more survery data
+    """   
+    #Use a while true loop so the program can check that the data entered is valid
+    while True: 
+        customerDetails = [] #array to store the customer details
+        print("Please enter the data as received in the survey.\n")        
+        county = input("Enter county : ")
+        vehicles = input("Enter number of vehicles : ")
+        monthlyLiters = input("Enter monthly liters : ")
+        monthlyEuro = input("Enter in monthly Euros : ")
+        customerType = input("Is customer sole trader or LTD? ")
+        print("Please enter a value between 1 and 5 for the below.\n")
+        service = input("Enter in rating for service : ")
+        price = input("Enter in rating for price : ")
+        sites = input("Enter in rating for sites : ")
+        reliability = input("Enter in rating for reliability : ")
+        customerDetails.append(county, )
+
+def validateUserData(data):
+    """
+    Function to validate the data the user has entered to add in to the
+    survey results.
+    """
 getUserFunction()
+getUserDataInput()
 
