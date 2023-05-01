@@ -61,7 +61,7 @@ def getUserDataInput():
     input more survery data
     """   
     # Use a while true loop so the program can check that the data entered is valid
-    while True: 
+    while True:
         customerDetails = []  #array to store the customer details
         print("Please enter the data as received in the survey.\n")        
         county = input("Enter county : ")
@@ -79,7 +79,7 @@ def getUserDataInput():
         if validateUserData(customerDetails):
             print("Customer data is valid")
             break
-
+    updateDataSheet(customerDetails)
 
 def validateUserData(data):
     """
@@ -111,9 +111,16 @@ def validateUserData(data):
     return True
 
 
-"""
-Next add data to the google sheet
-"""
+def updateDataSheet(values):
+    """
+    Function to update the Data google sheet with the values entered
+    """
+    print("Updating data worksheet....")
+    print(values)
+    data_worksheet = SHEET.worksheet("Data")
+    data_worksheet.append_row(values)
+    print("Data worksheet updated successfully....")
+
 
 getUserFunction()
 getUserDataInput()
