@@ -92,18 +92,28 @@ def validateUserData(data):
     detailsInts = []
     detailsStrings.extend((data[0], data[4]))
     detailsInts.extend((data[1], data[2], data[3], data[5], data[6], data[7], data[8]))
+
     # now there are 2 arrays - one for strings and one for integers
     try:
         for detail in detailsStrings:
             if detail.isdigit():
                 raise ValueError("You have entered a number insteead of text")
-        for num in detailsInts:
-            if int(num):
-                raise ValueError("You have entered text indtead of a number")
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.")
         return False
+    try:
+        for num in detailsInts:
+            if int(num) < 0:
+                raise ValueError("You have entered text instead of a number")
+    except ValueError as e:
+        print(f"Invalid data: {e}, {num} please try again.")
+        return False
     return True
+
+
+"""
+Next add data to the google sheet
+"""
 
 getUserFunction()
 getUserDataInput()
