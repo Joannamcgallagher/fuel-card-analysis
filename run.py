@@ -2,6 +2,8 @@ import gspread
 from google.oauth2.service_account import Credentials
 # import the os so the screen can be cleard
 import os
+# https://www.geeksforgeeks.org/get-current-date-using-python/
+from datetime import date
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -28,10 +30,10 @@ def clearConsole():
 
 def getUserFunction():
     """
-    Determine what the user would like to do - enter in data or view the 
+    Determine what the user would like to do - enter in data or view the
     analysis from the survey
     """
-    print("Welcome to the Fuel Card analysis program!\nHere you can enter in data from a survery received or view the analysis from the data already received.\n\n")
+    print("\n*******Welcome to the Fuel Card analysis program!*******\n\nHere you can enter in data from a survery received or view the analysis from the data already received.\n\n")
     while True:
         print("Please select an option below.\n")
         print("Select 1 to enter data or 2 to view the analysis:\n")
@@ -41,7 +43,7 @@ def getUserFunction():
             break
     return userChoice
 
-  
+
 def validateUserChoice(choice):
     """
     Take in the users choice as a parameter and using validation, ensure that the choice is correct
@@ -62,7 +64,7 @@ def getUserDataInput():
     """   
     # Use a while true loop so the program can check that the data entered is valid
     while True:
-        customerDetails = []  #array to store the customer details
+        customerDetails = []  # array to store the customer details
         print("Please enter the data as received in the survey.\n")        
         county = input("Enter county : ")
         vehicles = input("Enter number of vehicles : ")
@@ -80,6 +82,7 @@ def getUserDataInput():
             print("Customer data is valid")
             break
     updateDataSheet(customerDetails)
+
 
 def validateUserData(data):
     """
@@ -122,5 +125,34 @@ def updateDataSheet(values):
     print("Data worksheet updated successfully....")
 
 
-getUserFunction()
-getUserDataInput()
+def getAnalysis():
+    """
+    Function to get analyze data which will call other functions, displaying to the terminal
+    and entering into the Analysis spreadsheet
+
+    Args: None
+
+    Return: True or False if data has been entered correctly
+    
+    Need to get the Total number of customers,
+    County with highest customers,
+    Average liters,
+    Average Euro,
+    Customers top county,
+    Average ratings(service, price, sites & reliability)
+    """
+    data = SHEET.worksheet("Data")
+    cells = data.get_all_values()
+    customerCount = (len(cells) - 1)  # Subtract the first row which are the headers
+    print(customerCount)
+
+
+def main():
+    """
+    Runs all the main functions
+    """
+    # getUserFunction()
+    # getUserDataInput()
+    # today = date.today()
+    
+getAnalysis()
