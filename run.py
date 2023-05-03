@@ -3,7 +3,7 @@ from google.oauth2.service_account import Credentials
 # import the os so the screen can be cleard
 import os
 # https://www.geeksforgeeks.org/get-current-date-using-python/
-from datetime import date
+from datetime import datetime, date
 # https://www.w3schools.com/python/pandas/pandas_getting_started.asp
 import pandas as p
 
@@ -102,7 +102,7 @@ def validateUserData(data):
     try:
         for detail in detailsStrings:
             if detail.isdigit():
-                raise ValueError("You have entered a number insteead of text")
+                raise ValueError("You have entered a number instead of text")
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.")
         return False
@@ -190,11 +190,17 @@ def getAverage(value):
     average = round(totalSum / len(value))
     return average
 
-def main():
+
+def getAnalysis():
     """
-    Runs all the main functions
+    Function to retrieve the stat from the Data spreadsheet, analyze it, display to the user 
+    and enter it into the Analysis spreadsheet
+
+    Args: None
+
+    Return : True of false if the function has been successful
     """
-    # get the values from the google sheet so they can be passed into the getAvergae function
+
     data = SHEET.worksheet("Data")
     liters = data.col_values(3)
     euros = data.col_values(4)
@@ -202,26 +208,86 @@ def main():
     priceRatings = data.col_values(7)
     sitesRatings = data.col_values(8)
     reliabilityRatings = data.col_values(9)
-    today = date.today()
+    # create list to contain data to be entered to sheet
+    analytics = []
+    today = str(datetime.now().date())
+    analytics.append(today)
+
     customerCount = getCustomerCount()
+    analytics.append(str(customerCount))
+
     county, numberCustomers = highestCustomerCounty()
-    print(today)
-    print(customerCount)
-    print(county)
-    print(numberCustomers)
-    average = getAverage(liters)
-    print(average)
+    analytics.append(str(county))
+    analytics.append(str(numberCustomers))
+  
+    averageLiters = getAverage(liters)
+    analytics.append(str("{:,}".format(averageLiters)))
+
     averageEuros = getAverage(euros)
-    print(averageEuros)
-    # now get average service ratings etc
+    analytics.append(str("{:,}".format(averageEuros)))
+
     avgService = getAverage(serviceRatings)
-    print(avgService)
+    analytics.append(str(avgService))
+
     avgPrice = getAverage(priceRatings)
-    print(avgPrice)
+    analytics.append(str(avgPrice))
+
     avgSites = getAverage(sitesRatings)
-    print(avgSites)
+    analytics.append(str(avgSites))
+
     avgReliability = getAverage(reliabilityRatings)
-    print(avgReliability)
+    analytics.append(str(avgReliability))
+    
+    # Call the printAnalysis function to display the details
+    printAnalysis(analytics)
+   
+
+def printAnalysis(values):
+    """
+    Function to print the values passed to the user
+
+    Args: List of the values calculated
+
+    Returns: None
+    """
+
+    print("\nSee analysis below of customers whose details have been entered.\n")
+    print(f"Date: {values[0]}\n")
+    print(f"Total customer count: {values[1]}\n")
+    print(f"County with the highest customers: {values[2]}\n")
+    print(f"Number of customers in highest county: {values[3]}\n")
+    print(f"Average number of liters used per month: {values[4]}\n")
+    print(f"Average Euro's spent per month: {values[5]}\n")
+    print(f"Average service rating (1-5): {values[6]}\n")
+    print(f"Average price rating (1-5): {values[7]}\n")
+    print(f"Average sites rating (1-5): {values[8]}\n")
+    print(f"Average reliability rating (1-5): {values[9]}\n")
+
+    # Enter the above into the Analysis speadsheet
+    enterAnaylsis(values)
 
 
-main()
+def enterAnaylsis(results):
+    """
+    Function to enter the values passed in to the Analysis sheet
+
+    Args: List of values calculated from getAnalysis function
+
+    Returns: None
+    """
+    print("Updating analysis worksheet, please wait.......\n")
+    print(results)
+    worksheet = SHEET.worksheet("Analysis")
+    worksheet.append_row(results)
+    print("Analysis worksheet updated successfully!")
+
+
+def main():
+    """
+    Runs all the main functions
+    """
+    # get the values from the google sheet so they can be passed into the getAvergae function
+    
+
+
+getAnalysis()
