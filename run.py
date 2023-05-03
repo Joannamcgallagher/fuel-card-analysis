@@ -224,29 +224,21 @@ def getAnalysis():
     analytics = []
     today = str(datetime.now().date())
     analytics.append(today)
-
     customerCount = getCustomerCount()
     analytics.append(str(customerCount))
-
     county, numberCustomers = highestCustomerCounty()
     analytics.append(str(county))
     analytics.append(str(numberCustomers))
-    
     averageLiters = getAverage(liters)
     analytics.append(str("{:,}".format(averageLiters)))
-
     averageEuros = getAverage(euros)
     analytics.append(str("{:,}".format(averageEuros)))
-
     avgService = getAverage(serviceRatings)
     analytics.append(str(avgService))
-
     avgPrice = getAverage(priceRatings)
     analytics.append(str(avgPrice))
-
     avgSites = getAverage(sitesRatings)
     analytics.append(str(avgSites))
-
     avgReliability = getAverage(reliabilityRatings)
     analytics.append(str(avgReliability))
 
