@@ -21,7 +21,7 @@ SHEET = GSPREAD_CLIENT.open("fuelCardAnalysis")
 
 def clearConsole():
     """
-    Function to clear the terminal for the user 
+    Function to clear the terminal for the user
     https://www.delftstack.com/howto/python/python-clear-console/?utm_content=cmp-true
     """
     command = "clear"
@@ -35,24 +35,28 @@ def getUserFunction():
     Determine what the user would like to do - enter in data or view the
     analysis from the survey
     """
-    print("\n*******Welcome to the Fuel Card analysis program!*******\n\nHere you can enter in data from a survery received or view the analysis from the data already received.\n\n")
+    print("\n*******Welcome to the Fuel Card analysis program!*******\n\n \
+        Here you can enter in data from a survery received or view the \
+        analysis from the data already received.\n\n")
     while True:
         print("Please select an option below.\n")
-        print("Select 1 to enter data or 2 to view the analysis:\n")
+        print("Select 1 to enter data, 2 to view analysis or 3 to exit:\n")
         userChoice = input("Enter your option here : ")
         if validateUserChoice(userChoice):
-            print("Choice is valid")
+            print("\nChoice is valid")
             break
     return userChoice
 
 
 def validateUserChoice(choice):
     """
-    Take in the users choice as a parameter and using validation, ensure that the choice is correct
+    Take in the users choice as a parameter and using validation,
+    ensure that the choice is correct
     """
     try:
-        if int(choice) > 2:
-            raise ValueError(f"You need to select either 1 or 2, you selected {choice}")
+        if int(choice) > 3:
+            raise ValueError(f"You need to select either 1 or 2, \
+                you selected {choice}")
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         return False
@@ -61,13 +65,14 @@ def validateUserChoice(choice):
 
 def getUserDataInput():
     """
-    Function to retrieve the data the user inputs when they have selected to 
+    Function to retrieve the data the user inputs when they have selected to
     input more survery data
-    """   
-    # Use a while true loop so the program can check that the data entered is valid
+    """
+    # Use a while true loop so the program can check that the data entered is
+    # valid
     while True:
         customerDetails = []  # array to store the customer details
-        print("Please enter the data as received in the survey.\n")        
+        print("Please enter the data as received in the survey.\n")
         county = input("Enter county : ")
         vehicles = input("Enter number of vehicles : ")
         monthlyLiters = input("Enter monthly liters : ")
@@ -78,12 +83,14 @@ def getUserDataInput():
         price = input("Enter in rating for price : ")
         sites = input("Enter in rating for sites : ")
         reliability = input("Enter in rating for reliability : ")
-        customerDetails.extend((county, vehicles, monthlyLiters, monthlyEuro, customerType, service, price, sites, reliability))
-        print(customerDetails)
+        customerDetails.extend((county, vehicles, monthlyLiters,
+                                monthlyEuro, customerType, service,
+                                price, sites, reliability))
         if validateUserData(customerDetails):
             print("Customer data is valid")
             break
     updateDataSheet(customerDetails)
+    getUserFunction()
 
 
 def validateUserData(data):
@@ -96,7 +103,8 @@ def validateUserData(data):
     detailsStrings = []
     detailsInts = []
     detailsStrings.extend((data[0], data[4]))
-    detailsInts.extend((data[1], data[2], data[3], data[5], data[6], data[7], data[8]))
+    detailsInts.extend((data[1], data[2], data[3], data[5], data[6], data[7],
+                        data[8]))
 
     # now there are 2 arrays - one for strings and one for integers
     try:
@@ -129,7 +137,7 @@ def updateDataSheet(values):
 
 def getCustomerCount():
     """
-    Function to get calculate the total number of customers 
+    Function to get calculate the total number of customers
 
     Args: None
 
@@ -141,7 +149,7 @@ def getCustomerCount():
     """
     data = SHEET.worksheet("Data")
     cells = data.get_all_values()
-    customerCount = (len(cells) - 1)  # Subtract the first row which are the headers
+    customerCount = (len(cells) - 1)  # Subtract the first row (header)
     return customerCount
 
 
@@ -150,7 +158,7 @@ def highestCustomerCounty():
     Function to calculate the highest county by customer count.
 
     Args : None
-    
+
     Returns : county name and number of customers
     """
     data = SHEET.worksheet("Data")
@@ -161,12 +169,14 @@ def highestCustomerCounty():
     custCount = []
     # use the pandas library to count the number of times the values appear
     custCount = p.Series(column).value_counts()
-    # seperate the first line in the series which is the county with the highest customers
+    # seperate the first line in the series which is the county with the
+    # highest customers
     topCounty = custCount[:1]
     # convert to a string array so it can be split and the values taken
     stringArray = str(topCounty)
     stringArraySplit = stringArray.split()
-    # seperate the county and number of customers so it can be returned and then used to enter in sheet
+    # seperate the county and number of customers so it can be returned
+    # and then used to enter in sheet
     county = stringArraySplit[0]
     numCustomers = stringArraySplit[1]
     return county, numCustomers
@@ -178,7 +188,7 @@ def getAverage(value):
 
     Args: List of values
 
-    Returns : Average 
+    Returns : Average
     """
     # delete the first element as this is the header for the column
     del value[0]
@@ -193,12 +203,13 @@ def getAverage(value):
 
 def getAnalysis():
     """
-    Function to retrieve the stat from the Data spreadsheet, analyze it, display to the user 
-    and enter it into the Analysis spreadsheet
+    Function to retrieve the stat from the Data spreadsheet,
+    analyze it, display to the user and enter it into the
+    Analysis spreadsheet
 
     Args: None
 
-    Return : True of false if the function has been successful
+    Return : None
     """
 
     data = SHEET.worksheet("Data")
@@ -209,6 +220,7 @@ def getAnalysis():
     sitesRatings = data.col_values(8)
     reliabilityRatings = data.col_values(9)
     # create list to contain data to be entered to sheet
+    # (convert to strings to be entered)
     analytics = []
     today = str(datetime.now().date())
     analytics.append(today)
@@ -219,7 +231,7 @@ def getAnalysis():
     county, numberCustomers = highestCustomerCounty()
     analytics.append(str(county))
     analytics.append(str(numberCustomers))
-  
+    
     averageLiters = getAverage(liters)
     analytics.append(str("{:,}".format(averageLiters)))
 
@@ -237,10 +249,10 @@ def getAnalysis():
 
     avgReliability = getAverage(reliabilityRatings)
     analytics.append(str(avgReliability))
-    
+
     # Call the printAnalysis function to display the details
     printAnalysis(analytics)
-   
+
 
 def printAnalysis(values):
     """
@@ -251,7 +263,8 @@ def printAnalysis(values):
     Returns: None
     """
 
-    print("\nSee analysis below of customers whose details have been entered.\n")
+    print("\nSee analysis below of customers whose details \
+        have been entered.\n")
     print(f"Date: {values[0]}\n")
     print(f"Total customer count: {values[1]}\n")
     print(f"County with the highest customers: {values[2]}\n")
@@ -276,18 +289,25 @@ def enterAnaylsis(results):
     Returns: None
     """
     print("Updating analysis worksheet, please wait.......\n")
-    print(results)
     worksheet = SHEET.worksheet("Analysis")
     worksheet.append_row(results)
-    print("Analysis worksheet updated successfully!")
+    print("Analysis worksheet updated successfully!\n")
+    print("************************************************")
 
 
 def main():
     """
     Runs all the main functions
     """
-    # get the values from the google sheet so they can be passed into the getAvergae function
-    
+    choice = getUserFunction()
+    # check the choice variable to see what the user has chosen
+    if int(choice) == 1:
+        getUserDataInput()
+    elif int(choice) == 2:
+        getAnalysis()
+    else:
+        print("\nExiting.......")
+        exit()
 
 
-getAnalysis()
+main()
