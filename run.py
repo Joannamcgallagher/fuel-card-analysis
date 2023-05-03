@@ -129,15 +129,11 @@ def updateDataSheet(values):
 
 def getCustomerCount():
     """
-    Function to get analyze data which will call other functions, displaying to the terminal
-    and entering into the Analysis spreadsheet
+    Function to get calculate the total number of customers 
 
     Args: None
 
-    Return: True or False if data has been entered correctly
-    
-    Need to get the Total number of customers,
-    County with highest customers,
+    Return: Total number of customers
     Average liters,
     Average Euro,
     Customers top county,
@@ -146,7 +142,7 @@ def getCustomerCount():
     data = SHEET.worksheet("Data")
     cells = data.get_all_values()
     customerCount = (len(cells) - 1)  # Subtract the first row which are the headers
-    print(customerCount)
+    return customerCount
 
 
 def highestCustomerCounty():
@@ -176,16 +172,56 @@ def highestCustomerCounty():
     return county, numCustomers
 
 
+def getAverage(value):
+    """
+    Function to be used to get the average number of the values passed in
+
+    Args: List of values
+
+    Returns : Average 
+    """
+    # delete the first element as this is the header for the column
+    del value[0]
+    # convert the list of strings to a list of ints
+    valueInts = []
+    for x in value:
+        valueInts.append(int(x))
+    totalSum = sum(valueInts)
+    average = round(totalSum / len(value))
+    return average
+
 def main():
     """
     Runs all the main functions
     """
-    # getUserFunction()
-    # getUserDataInput()
-    # today = date.today()
-    
+    # get the values from the google sheet so they can be passed into the getAvergae function
+    data = SHEET.worksheet("Data")
+    liters = data.col_values(3)
+    euros = data.col_values(4)
+    serviceRatings = data.col_values(6)
+    priceRatings = data.col_values(7)
+    sitesRatings = data.col_values(8)
+    reliabilityRatings = data.col_values(9)
+    today = date.today()
+    customerCount = getCustomerCount()
+    county, numberCustomers = highestCustomerCounty()
+    print(today)
+    print(customerCount)
+    print(county)
+    print(numberCustomers)
+    average = getAverage(liters)
+    print(average)
+    averageEuros = getAverage(euros)
+    print(averageEuros)
+    # now get average service ratings etc
+    avgService = getAverage(serviceRatings)
+    print(avgService)
+    avgPrice = getAverage(priceRatings)
+    print(avgPrice)
+    avgSites = getAverage(sitesRatings)
+    print(avgSites)
+    avgReliability = getAverage(reliabilityRatings)
+    print(avgReliability)
 
-county, numberCustomers = highestCustomerCounty()
-print(county)
-print(numberCustomers)
 
+main()
