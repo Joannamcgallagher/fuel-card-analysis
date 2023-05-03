@@ -34,6 +34,10 @@ def getUserFunction():
     """
     Determine what the user would like to do - enter in data or view the
     analysis from the survey
+
+    Args: None
+
+    Returns: Validated user choice
     """
     print("\n*******Welcome to the Fuel Card analysis program!*******\n\n \
         Here you can enter in data from a survery received or view the \
@@ -52,6 +56,10 @@ def validateUserChoice(choice):
     """
     Take in the users choice as a parameter and using validation,
     ensure that the choice is correct
+
+    Args: User choice
+
+    Results: None
     """
     try:
         if int(choice) > 3:
@@ -67,6 +75,10 @@ def getUserDataInput():
     """
     Function to retrieve the data the user inputs when they have selected to
     input more survery data
+
+    Args: None
+
+    Returns: None
     """
     # Use a while true loop so the program can check that the data entered is
     # valid
@@ -99,6 +111,10 @@ def validateUserData(data):
     survey results.
     Get the data in as a string, check to make sure it's a string, int, int,
     int, string(either sole or ltd), then ints for all ratings
+
+    Args: Values that user has entered
+    
+    Returns: None
     """
     detailsStrings = []
     detailsInts = []
@@ -127,6 +143,10 @@ def validateUserData(data):
 def updateDataSheet(values):
     """
     Function to update the Data google sheet with the values entered
+
+    Args: List of values to be entered
+
+    Return: None
     """
     print("Updating data worksheet....")
     print(values)
@@ -142,10 +162,6 @@ def getCustomerCount():
     Args: None
 
     Return: Total number of customers
-    Average liters,
-    Average Euro,
-    Customers top county,
-    Average ratings(service, price, sites & reliability)
     """
     data = SHEET.worksheet("Data")
     cells = data.get_all_values()
@@ -211,7 +227,8 @@ def getAnalysis():
 
     Return : None
     """
-
+    # Retrieve the data from the Data worksheet so it can
+    # be passed into the functions
     data = SHEET.worksheet("Data")
     liters = data.col_values(3)
     euros = data.col_values(4)
@@ -294,8 +311,10 @@ def main():
     choice = getUserFunction()
     # check the choice variable to see what the user has chosen
     if int(choice) == 1:
+        clearConsole()
         getUserDataInput()
     elif int(choice) == 2:
+        clearConsole()
         getAnalysis()
     else:
         print("\nExiting.......")
