@@ -4,6 +4,8 @@ from google.oauth2.service_account import Credentials
 import os
 # https://www.geeksforgeeks.org/get-current-date-using-python/
 from datetime import date
+# https://www.w3schools.com/python/pandas/pandas_getting_started.asp
+import pandas as p
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -125,7 +127,7 @@ def updateDataSheet(values):
     print("Data worksheet updated successfully....")
 
 
-def getAnalysis():
+def getCustomerCount():
     """
     Function to get analyze data which will call other functions, displaying to the terminal
     and entering into the Analysis spreadsheet
@@ -147,6 +149,33 @@ def getAnalysis():
     print(customerCount)
 
 
+def highestCustomerCounty():
+    """
+    Function to calculate the highest county by customer count.
+
+    Args : None
+    
+    Returns : county name and number of customers
+    """
+    data = SHEET.worksheet("Data")
+    column = []
+    # get the first column and remove the first element which is the header
+    column = data.col_values(1)
+    del column[0]
+    custCount = []
+    # use the pandas library to count the number of times the values appear
+    custCount = p.Series(column).value_counts()
+    # seperate the first line in the series which is the county with the highest customers
+    topCounty = custCount[:1]
+    # convert to a string array so it can be split and the values taken
+    stringArray = str(topCounty)
+    stringArraySplit = stringArray.split()
+    # seperate the county and number of customers so it can be returned and then used to enter in sheet
+    county = stringArraySplit[0]
+    numCustomers = stringArraySplit[1]
+    return county, numCustomers
+
+
 def main():
     """
     Runs all the main functions
@@ -155,4 +184,8 @@ def main():
     # getUserDataInput()
     # today = date.today()
     
-getAnalysis()
+
+county, numberCustomers = highestCustomerCounty()
+print(county)
+print(numberCustomers)
+
