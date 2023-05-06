@@ -98,7 +98,7 @@ I ran the Python code through the linter at https://pep8ci.herokuapp.com/# and t
 This program was deployed using Heroku.
 Live link :
 Repository :
-Google Sheet: 
+Google Sheet: https://docs.google.com/spreadsheets/d/1WFYC9nJ58GSUauFM8Ws0mgEDMuzy5lKIJDhMDM0ioio/edit#gid=0
 
 ## Credits
 
