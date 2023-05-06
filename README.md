@@ -47,6 +47,7 @@ data returned and also view the analysis and have it entered into a spreadsheet 
 ## Features
 
 + Allows the user to enter in recevied survey results from customers
++ Data is validated and if invalid, it will inform the user and ask for the data to be entered again.
 + Display the analysis of all entered data to the user via the terminal
 + Enters the analysis into the Analysis spreadsheet on Google Sheets
 
@@ -78,8 +79,6 @@ This data will then be entered in a new row on the Data worksheet.
 
 To view the analysis, select 2 and the data will be displayed to the screen and entered into the Analysis spreadsheet.
 
-
-## Features left to implement
 
 ## Bugs
 

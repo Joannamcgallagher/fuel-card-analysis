@@ -249,7 +249,7 @@ def getAnalysis():
     analytics.append(str("{:,}".format(averageLiters)))
     averageEuros = getAverage(euros)
     analytics.append(str("{:,}".format(averageEuros)))
-    avgService = getAverage(serviceRatings)
+    avgService = getAverage(serviceRatings) 
     analytics.append(str(avgService))
     avgPrice = getAverage(priceRatings)
     analytics.append(str(avgPrice))
