@@ -113,7 +113,6 @@ def validateUserData(data):
     int, string(either sole or ltd), then ints for all ratings
 
     Args: Values that user has entered
-    
     Returns: None
     """
     detailsStrings = []
@@ -149,7 +148,6 @@ def updateDataSheet(values):
     Return: None
     """
     print("Updating data worksheet....")
-    print(values)
     data_worksheet = SHEET.worksheet("Data")
     data_worksheet.append_row(values)
     print("Data worksheet updated successfully....")

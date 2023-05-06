@@ -30,3 +30,27 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 ---
 
 Happy coding!
+
+# Fuel Card Analysis Program
+
+This is an online data entry program for a user in the Fuel Card Team to enter in survey results returned by customers or to view the analysis of the surveys already entered. The analysis will also be entered into the Analysis worksheet.
+
+## User Story
+
+## Implementation flow chart
+
+## Features
+
+## Libraries Used
+
+## Testing
+
+## Features left to implement
+
+## Bugs
+
+## Validator Testing
+
+## Deployment
+
+## Credits
