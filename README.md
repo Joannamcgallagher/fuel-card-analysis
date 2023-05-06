@@ -83,12 +83,23 @@ To view the analysis, select 2 and the data will be displayed to the screen and 
 
 ## Bugs
 
-* There was an issue when trying to seperate out the array which contained the entered data. As there was a combination of both strings and integers, these had to be seperated out so the data could be validated. 
-* When getting the current customer count, it was not working correctly. I then imported the Pandas library and used the "value_counts" which returned the correct value.
++ There was an issue when trying to seperate out the array which contained the entered data. As there was a combination of both strings and integers, these had to be seperated out so the data could be validated. 
++ When getting the current customer count, it was not working correctly. I then imported the Pandas library and used the "value_counts" which returned the correct value.
++ There was an issue where they were warnings detected from lines being too long.
+I reseached this and was able to resolve. 
 
 ## Validator Testing
 
+I ran the Python code through the linter at https://pep8ci.herokuapp.com/# and there were no errors found.
+
+![Validated Python code](docs/Python-Linter.png)
+
 ## Deployment
+
+This program was deployed using Heroku.
+Live link :
+Repository :
+Google Sheet: 
 
 ## Credits
 
@@ -96,4 +107,5 @@ To view the analysis, select 2 and the data will be displayed to the screen and 
 + https://www.w3schools.com/python/pandas/pandas_getting_started.asp for importing and using the Pandas library.
 + https://www.geeksforgeeks.org/get-current-date-using-python/ for importing the date time library.
 + https://www.delftstack.com/howto/python/python-clear-console/?utm_content=cmp-true for importing and using the OS library
++ https://www.codecademy.com/resources/docs/markdown/tables for using tables in Markdown
 

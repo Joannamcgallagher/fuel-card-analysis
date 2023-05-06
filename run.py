@@ -40,9 +40,9 @@ def getUserFunction():
 
     Returns: Validated user choice
     """
-    print("\n*******Welcome to the Fuel Card analysis program!*******\n\n \
-        Here you can enter in data from a survery received or view the \
-        analysis from the data already received.\n\n")
+    print("\n*******Welcome to the Fuel Card analysis program!*******\n\n"
+          "Here you can enter in data from a survery received or view the"
+          "analysis from the data already received.\n\n")
     while True:
         print("Please select an option below.\n")
         print("Select 1 to enter data, 2 to view analysis or 3 to exit:\n")
@@ -271,8 +271,8 @@ def printAnalysis(values):
     Returns: None
     """
 
-    print("\nSee analysis below of customers whose details \
-        have been entered.\n")
+    print("\nSee analysis below of customers whose details",
+          "have been entered.\n")
     print(f"Date: {values[0]}\n")
     print(f"Total customer count: {values[1]}\n")
     print(f"County with the highest customers: {values[2]}\n")
