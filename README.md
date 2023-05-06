@@ -83,8 +83,17 @@ To view the analysis, select 2 and the data will be displayed to the screen and 
 
 ## Bugs
 
+* There was an issue when trying to seperate out the array which contained the entered data. As there was a combination of both strings and integers, these had to be seperated out so the data could be validated. 
+* When getting the current customer count, it was not working correctly. I then imported the Pandas library and used the "value_counts" which returned the correct value.
+
 ## Validator Testing
 
 ## Deployment
 
 ## Credits
+
++ Love Sandwiches walkthrough.
++ https://www.w3schools.com/python/pandas/pandas_getting_started.asp for importing and using the Pandas library.
++ https://www.geeksforgeeks.org/get-current-date-using-python/ for importing the date time library.
++ https://www.delftstack.com/howto/python/python-clear-console/?utm_content=cmp-true for importing and using the OS library
+

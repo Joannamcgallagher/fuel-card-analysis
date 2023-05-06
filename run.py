@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 # import the os so the screen can be cleard
+# https://www.delftstack.com/howto/python/python-clear-console/?utm_content=cmp-true
 import os
 # https://www.geeksforgeeks.org/get-current-date-using-python/
 from datetime import datetime, date
