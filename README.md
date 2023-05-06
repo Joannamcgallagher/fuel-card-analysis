@@ -36,8 +36,12 @@ Happy coding!
 This is an online data entry program for a user in the Fuel Card Team to enter in survey results returned by customers or to view the analysis of the surveys already entered. The analysis will also be entered into the Analysis worksheet.
 
 ## User Story
++ As a member of a Fuel Card team, we have issued out surveys to all current customers to analyze our customer base and see how they rate our service. We want to be able to enter
+data returned and also view the analysis and have it entered into a spreadsheet so it can be monitored and differences viewed as more results are entered.
 
 ## Implementation flow chart
+
+![Image of flow chart](docs/Flow-chart-pp3.png)
 
 ## Features
 
