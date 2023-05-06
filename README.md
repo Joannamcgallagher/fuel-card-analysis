@@ -36,6 +36,7 @@ Happy coding!
 This is an online data entry program for a user in the Fuel Card Team to enter in survey results returned by customers or to view the analysis of the surveys already entered. The analysis will also be entered into the Analysis worksheet.
 
 ## User Story
+
 + As a member of a Fuel Card team, we have issued out surveys to all current customers to analyze our customer base and see how they rate our service. We want to be able to enter
 data returned and also view the analysis and have it entered into a spreadsheet so it can be monitored and differences viewed as more results are entered.
 
@@ -45,9 +46,38 @@ data returned and also view the analysis and have it entered into a spreadsheet 
 
 ## Features
 
++ Allows the user to enter in recevied survey results from customers
++ Display the analysis of all entered data to the user via the terminal
++ Enters the analysis into the Analysis spreadsheet on Google Sheets
+
 ## Libraries Used
 
++ Gspread
++ DateTime
++ OS
++ Pandas
+
 ## Testing
+
+To test the program for entering data, please enter the below;
+
+| Question                  | Answer |
+| --------                  | ------ |
+| County:                   | Sligo  |
+| Number of vehicles:       | 9      |
+| Monthly spend (lts):      | 10000  |
+| Monthly spend (€):        | 18500  |
+| Limited or sole trader:   | LTD    |
+| Service Rating:           | 5      |
+| Price Rating:             | 1      |
+| Sites Rating:             | 4      |
+| Reliabilty Rating:        | 5      |
+
+
+This data will then be entered in a new row on the Data worksheet.
+
+To view the analysis, select 2 and the data will be displayed to the screen and entered into the Analysis spreadsheet.
+
 
 ## Features left to implement
 
