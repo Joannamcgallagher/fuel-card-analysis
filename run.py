@@ -46,7 +46,7 @@ def getUserFunction():
     while True:
         print("Please select an option below.\n")
         print("Select 1 to enter data, 2 to view analysis or 3 to exit:\n")
-        userChoice = input("Enter your option here : ")
+        userChoice = input("Enter your option here : \n")
         if validateUserChoice(userChoice):
             print("\nChoice is valid")
             break
@@ -86,16 +86,16 @@ def getUserDataInput():
     while True:
         customerDetails = []  # array to store the customer details
         print("Please enter the data as received in the survey.\n")
-        county = input("Enter county : ")
-        vehicles = input("Enter number of vehicles : ")
-        monthlyLiters = input("Enter monthly liters : ")
-        monthlyEuro = input("Enter in monthly Euros : ")
-        customerType = input("Is customer sole trader or LTD? ")
+        county = input("Enter county : \n")
+        vehicles = input("Enter number of vehicles : \n")
+        monthlyLiters = input("Enter monthly liters : \n")
+        monthlyEuro = input("Enter in monthly Euros : \n")
+        customerType = input("Is customer sole trader or LTD? \n")
         print("Please enter a value between 1 and 5 for the below.\n")
-        service = input("Enter in rating for service : ")
-        price = input("Enter in rating for price : ")
-        sites = input("Enter in rating for sites : ")
-        reliability = input("Enter in rating for reliability : ")
+        service = input("Enter in rating for service : \n")
+        price = input("Enter in rating for price : \n")
+        sites = input("Enter in rating for sites : \n")
+        reliability = input("Enter in rating for reliability : \n")
         customerDetails.extend((county, vehicles, monthlyLiters,
                                 monthlyEuro, customerType, service,
                                 price, sites, reliability))
@@ -249,7 +249,7 @@ def getAnalysis():
     analytics.append(str("{:,}".format(averageLiters)))
     averageEuros = getAverage(euros)
     analytics.append(str("{:,}".format(averageEuros)))
-    avgService = getAverage(serviceRatings) 
+    avgService = getAverage(serviceRatings)
     analytics.append(str(avgService))
     avgPrice = getAverage(priceRatings)
     analytics.append(str(avgPrice))
