@@ -1,39 +1,8 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
-
-## Reminders
-
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
-
 # Fuel Card Analysis Program
 
 This is an online data entry program for a user in the Fuel Card Team to enter in survey results returned by customers or to view the analysis of the surveys already entered. The analysis will also be entered into the Analysis worksheet.
+
+![Am I Responsive Image](docs/am-i-repsonsive.jpg)
 
 ## User Story
 
@@ -46,10 +15,25 @@ data returned and also view the analysis and have it entered into a spreadsheet 
 
 ## Features
 
-+ Allows the user to enter in recevied survey results from customers
++ Allows the user to select whether to enter in data or view analysis
+![Enter user choice](docs/enter-choice.jpg)
 + Data is validated and if invalid, it will inform the user and ask for the data to be entered again.
+![Data validation](docs/data-validation.jpg)
 + Display the analysis of all entered data to the user via the terminal
+![View analysis](/docs/view-analysis.jpg)
 + Enters the analysis into the Analysis spreadsheet on Google Sheets
+![Google sheet analysis](/docs/sheet-analysis.jpg)
+
+
+## Future Features
+
++ Analyse the data in more detail, for example: where a customer has entered a low rating for sites, get the counties for those and identify where more local sites could be obtained.
++ Enter in customer's account number so the program could check for low service ratings and the customer could be contacted to see where this could be improved.
++ Have the user to login to run the program and record the users login on the sheet in a seperate column.
+
+## Development
+
+For another developer to add to this program, they would need to obtain access to the Google sheet and utilise the libraries below in order to build in the futre features listed above.
 
 ## Libraries Used
 
@@ -96,9 +80,19 @@ I ran the Python code through the linter at https://pep8ci.herokuapp.com/# and t
 ## Deployment
 
 This program was deployed using Heroku.
-Live link :
-Repository :
-Google Sheet: https://docs.google.com/spreadsheets/d/1WFYC9nJ58GSUauFM8Ws0mgEDMuzy5lKIJDhMDM0ioio/edit#gid=0
+
+The steps to deploy using Heroku are:
++ In the settings tab, add in the the creds and port config vars
++ Add in the relevant build packs. In this case, it was Python and Node JS
++ Connect to GitHub
++ Locate repository using the repo name
++ Deploy manaully using main branch
+
+### Links
+
++ Live link : https://fuel-card-analysis.herokuapp.com/ 
++ Repository : https://github.com/Joannamcgallagher/fuel-card-analysis
++ Google Sheet: https://docs.google.com/spreadsheets/d/1WFYC9nJ58GSUauFM8Ws0mgEDMuzy5lKIJDhMDM0ioio/edit#gid=0
 
 ## Credits
 

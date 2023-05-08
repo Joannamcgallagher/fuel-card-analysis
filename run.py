@@ -64,8 +64,8 @@ def validateUserChoice(choice):
     """
     try:
         if int(choice) > 3:
-            raise ValueError(f"You need to select either 1 or 2, \
-                you selected {choice}")
+            raise ValueError(f"You need to select either 1 or 2, "
+                              f"you selected {choice}")
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         return False
@@ -134,8 +134,10 @@ def validateUserData(data):
         for num in detailsInts:
             if int(num) < 0:
                 raise ValueError("You have entered text instead of a number")
+            if int(num) > 5:
+                raise ValueError("You need to enter a number between 1 and 5")
     except ValueError as e:
-        print(f"Invalid data: {e}, {num} please try again.")
+        print(f"Invalid data: {e}, please try again.")
         return False
     return True
 
